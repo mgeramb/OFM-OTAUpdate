@@ -3,12 +3,16 @@
 
 const std::string OTAUpdateModule::name()
 {
-    return "OTAUpdateModule";
+    return "OTAUpdate";
 }
 
 const std::string OTAUpdateModule::version()
 {
-    return "0";
+#ifdef OTAUpdate_ModuleVersion
+    return OTAUpdate_ModuleVersion;
+#else
+    // hides the module in the version output on the console, because the firmware version is sufficient.
+    return "";
 }
 
 static RTC_NOINIT_ATTR  bool rebootAfterSWUpdate=false;
